@@ -28,7 +28,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = Person.class, entityManagerFactoryRef = "entityManagerFactory")
+@EnableJpaRepositories(basePackageClasses = Person.class, entityManagerFactoryRef = "personEntityManagerFactory")
 public class PersonConfiguration {
 
 	@Bean
@@ -40,7 +40,7 @@ public class PersonConfiguration {
 
 	@Bean
 	@Primary
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+	public LocalContainerEntityManagerFactoryBean personEntityManagerFactory(
 			EntityManagerFactoryBuilder factory) {
 		// This one is @Primary so it gets injected into the default JpaTransactionManager
 		return factory.dataSource(personDataSource()).packages(Person.class).persistenceUnit(
